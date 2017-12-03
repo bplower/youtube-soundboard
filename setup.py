@@ -24,7 +24,7 @@ setup(
         "soundboard": [
             "static/index.html",
             "static/site.css",
-            "static/site.js"
+            "static/site.jsx"
         ]
     },
 
@@ -34,7 +34,9 @@ setup(
     # Dependant packages:
     install_requires = [
         "Flask",
-        "docopt"
+        "docopt",
+        "youtube-dl",
+        "pydub"
     ],
 
     entry_points={
