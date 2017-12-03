@@ -150,7 +150,7 @@ class ClipCreateForm extends React.Component {
   					<input type="number" data-field="end" className="form-control" onChange={this.handleChange} />
   				</div>
         </div>
-        <p style={{display: self.state.error_display}}>{this.state.error_message}</p>
+        <p style={{display: this.state.error_display}}>{this.state.error_message}</p>
         <div className="modal-footer">
           <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
           <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Create Clip</button>

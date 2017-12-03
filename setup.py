@@ -35,6 +35,7 @@ setup(
     install_requires = [
         "Flask",
         "docopt",
+        "PyYAML",
         "youtube-dl",
         "pydub"
     ],

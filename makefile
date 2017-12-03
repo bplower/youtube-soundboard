@@ -11,7 +11,7 @@ reinstall: uninstall install
 
 .PHONY: run
 run:
-	soundboard
+	soundboard --config-file ./example-config.yml
 
 .PHONY: test
 test:
