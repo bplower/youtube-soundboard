@@ -18,7 +18,7 @@ class Clip(object):
     def is_saved(self):
         return self._pkid is not None
 
-    def save(self, db_conn):
+    def save(self, db_conn, save_directory):
         # Handle storage actions first
         if self.is_saved():
             # We want to update the database
@@ -29,7 +29,7 @@ class Clip(object):
             self._pkid = row[0]
         # Create the clip
         download_path = download_video(self.url)
-        clip_path = "./data/{}.mp3".format(self.pkid)
+        clip_path = "{}/{}.mp3".format(save_directory, self.pkid)
         create_clip(download_path, clip_path, self.start, self.end)
 
     def delete(self, db_conn):
@@ -67,7 +67,6 @@ def download_video(url):
         'outtmpl': "%(id)s.%(ext)s",
         'no_warnings': True,
         'quiet': True,
-        'forcejson': True,
         'format':'bestaudio/best',
         'prefer_ffmpeg': True,
         'postprocessors': [{
@@ -82,6 +81,8 @@ def download_video(url):
     except youtube_dl.utils.DownloadError as e:
         if "Unsupported URL" in str(e):
             raise ValueError("Unsupported URL")
+        else:
+            raise e
 
     # ret_code = ydl.__dict__['_retcode']
     ret_code = 0

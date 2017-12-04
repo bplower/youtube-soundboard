@@ -89,7 +89,7 @@ class Soundboard(Flask):
         # instantiate and save object
         clip = Clip(name, url, start, end)
         try:
-            clip.save(self.db_conn)
+            clip.save(self.db_conn, self.sb_config.data_dir)
         except ValueError as e:
             return json_response({'error': True, 'field': 'url', 'message': str(e)}, 400)
         return json_response(clip.as_dict())
